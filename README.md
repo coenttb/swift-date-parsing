@@ -1,11 +1,12 @@
 # swift-date-parsing
 
-A Swift package providing parsers for RFC 2822 and RFC 5322 date formats, built on top of [swift-parsing](https://github.com/pointfreeco/swift-parsing).
+A Swift package providing parsers for RFC 2822, RFC 5322 date formats, and Unix epoch timestamps, built on top of [swift-parsing](https://github.com/pointfreeco/swift-parsing).
 
 ## Features
 
 - **RFC 2822 Date Parser**: Parse and format dates according to RFC 2822 specification
 - **RFC 5322 Date Parser**: Parse and format dates according to RFC 5322 specification
+- **Unix Epoch Parsing**: Parse Unix timestamps (integer and floating-point) to Date objects
 - **Type-safe parsing**: Built on swift-parsing for composable, type-safe date parsing
 - **Bidirectional conversion**: Both parsing and printing capabilities
 - **Comprehensive error handling**: Clear error messages for invalid date formats
@@ -16,7 +17,7 @@ Add `swift-date-parsing` to your Swift package dependencies in `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/coenttb/swift-date-parsing.git", branch: "main")
+    .package(url: "https://github.com/coenttb/swift-date-parsing.git", from: "0.1.0")
 ]
 ```
 
@@ -52,6 +53,29 @@ let date = try parser.parse(dateString[...])
 let formattedString = try parser.print(date)
 ```
 
+### Unix Epoch Parsing
+
+```swift
+import UnixEpochParsing
+
+let parser = Date.UnixEpoch.Parser()
+
+// Parse Unix timestamp to Date
+let timestamp = "1234567890"
+let date = try parser.parse(timestamp[...])
+
+// Parse floating-point timestamp
+let floatTimestamp = "1234567890.5"
+let preciseDate = try parser.parse(floatTimestamp[...])
+
+// Parse negative timestamp (pre-1970)
+let negativeTimestamp = "-86400"
+let preEpochDate = try parser.parse(negativeTimestamp[...])
+
+// Convert Date back to Unix timestamp string
+let timestampString = try parser.print(date)
+```
+
 ## Supported Formats
 
 ### RFC 2822
@@ -63,6 +87,13 @@ let formattedString = try parser.print(date)
 - Standard format: `Mon, 01 Jan 2024 12:00:00 +0000`
 - Timezone offsets: `+0000`, `+0100`, `-0500`, etc.
 - Full weekday and month names supported
+
+### Unix Epoch
+- Integer timestamps: `1234567890`
+- Floating-point timestamps: `1234567890.5`
+- Negative timestamps (pre-1970): `-86400`
+- Large timestamps: `9223372036854775807`
+- Zero (Unix epoch start): `0`
 
 ## Requirements
 
