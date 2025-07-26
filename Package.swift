@@ -5,10 +5,12 @@ import PackageDescription
 
 extension String {
     static let dateParsing: Self = "DateParsing"
+    static let unixEpoch: Self = "UnixEpochParsing"
 }
 
 extension Target.Dependency {
     static var dateParsing: Self { .target(name: .dateParsing) }
+    static var unixEpoch: Self { .target(name: .unixEpoch) }
 }
 
 extension Target.Dependency {
@@ -24,7 +26,8 @@ let package = Package(
         .iOS(.v16)
     ],
     products: [
-        .library(name: .dateParsing, targets: [.dateParsing])
+        .library(name: .dateParsing, targets: [.dateParsing]),
+        .library(name: .unixEpoch, targets: [.unixEpoch])
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-parsing.git", from: "0.14.1"),
@@ -46,10 +49,24 @@ let package = Package(
                 .dateParsing,
                 .rfc2822,
                 .rfc5322
-
             ]
-        )
-
+        ),
+        .target(
+            name: .unixEpoch,
+            dependencies: [
+                .rfc2822,
+                .rfc5322,
+                .parsing
+            ]
+        ),
+        .testTarget(
+            name: .unixEpoch.tests,
+            dependencies: [
+                .unixEpoch,
+                .rfc2822,
+                .rfc5322
+            ]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
