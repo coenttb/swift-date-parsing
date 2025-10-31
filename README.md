@@ -16,7 +16,7 @@ swift-date-parsing provides type-safe date parsing and formatting for common dat
 - Unix epoch timestamp parser supporting integer, floating-point, and negative values
 - Bidirectional conversion: parse strings to Date and format Date back to strings
 - Built on swift-parsing for type-safe, composable parsing
-- Comprehensive error handling with descriptive error messages
+- Error handling with descriptive error messages
 
 ## Installation
 
