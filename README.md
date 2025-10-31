@@ -147,9 +147,9 @@ let date4 = try parser.parse("0"[...])
 
 ## Related Packages
 
-- [swift-parsing](https://github.com/pointfreeco/swift-parsing) - Composable parsing library for Swift
-- [swift-rfc-2822](https://github.com/swift-web-standards/swift-rfc-2822) - RFC 2822 implementations
-- [swift-rfc-5322](https://github.com/swift-web-standards/swift-rfc-5322) - RFC 5322 implementations
+- [swift-parsing](https://github.com/pointfreeco/swift-parsing) - A library for turning nebulous data into well-structured data, with a focus on composition, performance, generality, and ergonomics.
+- [swift-rfc-2822](https://github.com/swift-web-standards/swift-rfc-2822) - Swift implementation of RFC 2822: Internet Message Format
+- [swift-rfc-5322](https://github.com/swift-web-standards/swift-rfc-5322) - Swift implementation of RFC 5322: Internet Message Format
 
 ## License
 
