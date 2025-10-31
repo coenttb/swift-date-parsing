@@ -10,10 +10,10 @@ import Parsing
 
 // Pull request to get this from URLRouting into Parsing https://github.com/pointfreeco/swift-parsing/pull/379
 extension Parse {
-    @inlinable
-    init<Downstream>(
-        _ conversion: Downstream
-    ) where Parsers == Parsing.Parsers.MapConversion<Rest<Downstream.Input>, Downstream> {
-        self.init { Rest().map(conversion) }
-    }
+  @inlinable
+  init<Downstream>(
+    _ conversion: Downstream
+  ) where Parsers == Parsing.Parsers.MapConversion<Rest<Downstream.Input>, Downstream> {
+    self.init { Rest().map(conversion) }
+  }
 }
